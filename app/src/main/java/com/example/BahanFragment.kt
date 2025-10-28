@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.databinding.FragmentBahanBinding
@@ -61,7 +62,7 @@ class BahanFragment : Fragment() {
 
             if (nama.isNotEmpty() && kategori.isNotEmpty()) {
                 data.add(Bahan(nama, kategori))
-                adapter.notifyDataSetChanged() // Gunakan adapter dari parameter
+                adapter.notifyDataSetChanged()
                 Toast.makeText(
                     requireContext(),
                     "Bahan '$nama' ditambahkan",
@@ -151,7 +152,6 @@ class BahanFragment : Fragment() {
                     )
                     if (position != ListView.INVALID_POSITION) {
                         val selectedItem = data[position]
-                        // Panggil showActionDialog, sama seperti di Activity.kt
                         showActionDialog(position, selectedItem, data, lvAdapter)
                     }
                     return true
@@ -161,6 +161,88 @@ class BahanFragment : Fragment() {
         lvBahan.setOnTouchListener { _, event ->
             gestureDetector.onTouchEvent(event)
         }
+    }
+    private fun showActionDialog(
+        position: Int,
+        selectedItem: Bahan,
+        data: MutableList<Bahan>,
+        adapter: ArrayAdapter<Bahan>
+    ) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("ITEM ${selectedItem.nama}")
+        builder.setMessage("Pilih tindakan yang ingin dilakukan")
+
+        builder.setPositiveButton("Update Kategori") { _, _ ->
+
+            showUpdateCategoryDialog(position, selectedItem, data, adapter)
+        }
+        builder.setNegativeButton("Hapus") { _, _ ->
+            data.removeAt(position)
+            adapter.notifyDataSetChanged()
+            Toast.makeText(
+                requireContext(),
+                "Hapus Item ${selectedItem.nama}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        builder.setNeutralButton("Batal") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        builder.create().show()
+    }
+
+    private fun showUpdateCategoryDialog(
+        position: Int,
+        oldValue: Bahan,
+        data: MutableList<Bahan>,
+        adapter: ArrayAdapter<Bahan>
+    ) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Update Kategori")
+
+        val layout = LinearLayout(requireContext())
+        layout.orientation = LinearLayout.VERTICAL
+        layout.setPadding(50, 40, 50, 10)
+
+
+        val tvOld = TextView(requireContext())
+        tvOld.text = "Nama Bahan: ${oldValue.nama}"
+        tvOld.textSize = 16f
+
+
+        val etNew = EditText(requireContext())
+        etNew.hint = "Masukkan Kategori Baru"
+        etNew.setText(oldValue.kategori)
+
+        layout.addView(tvOld)
+        layout.addView(etNew)
+
+        builder.setView(layout)
+
+        builder.setPositiveButton("Simpan") { dialog, _ ->
+            val newValue = etNew.text.toString().trim()
+            if (newValue.isNotEmpty()) {
+                data[position].kategori = newValue
+                adapter.notifyDataSetChanged()
+                Toast.makeText(
+                    requireContext(),
+                    "Kategori diupdate jadi: $newValue",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Kategori baru tidak boleh kosong",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("Batal") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 
     override fun onDestroyView() {
