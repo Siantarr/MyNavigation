@@ -14,12 +14,22 @@
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="30sp"/>
+
     <Button
         android:id="@+id/btnOpen"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buka Detail Profile"
         android:layout_gravity="bottom"
-        android:layout_margin="24dp"/>
+        android:layout_margin="24dp"
+        android:text="Buka Detail Profile" />
+
+    <Button
+        android:id="@+id/btnOpenSafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="24dp"
+        android:text="Safe Args" />
 
 </FrameLayout>

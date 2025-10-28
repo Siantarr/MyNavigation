@@ -9,7 +9,12 @@
         android:id="@+id/detailProfileFragment"
         android:name="com.example.DetailProfileFragment"
         android:label="Detail Profile"
-        tools:layout="@layout/fragment_detail_profile" />
+        tools:layout="@layout/fragment_detail_profile" >
+        <argument
+            android:name="dataSatu"
+            app:argType="string"
+            android:defaultValue="-" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.HomeFragment"
