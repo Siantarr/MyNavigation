@@ -43,4 +43,11 @@
             app:destination="@id/detailProfileFragment"
             app:enterAnim="@android:anim/fade_in" />
     </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.CartFragment"
+        android:label="Keranjang Belanja"
+        tools:layout="@layout/fragment_cart" />
+
 </navigation>

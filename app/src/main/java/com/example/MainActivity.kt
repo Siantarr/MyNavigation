@@ -66,6 +66,17 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.profileFragment,
+                R.id.settingFragment,
+                R.id.bahanFragment,
+                R.id.cartFragment // TAMBAHKAN INI
+            ),
+            binding!!.drawer
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     override fun onSupportNavigateUp(): Boolean {

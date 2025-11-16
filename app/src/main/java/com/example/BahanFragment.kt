@@ -4,23 +4,21 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.content.Context
 import android.content.SharedPreferences
-import android.view.GestureDetector
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.databinding.FragmentBahanBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,11 +40,39 @@ class BahanFragment : Fragment() {
     private val binding get() = _binding!!
 
     var data = mutableListOf<Bahan>()
+    private lateinit var adapter: BahanAdapter
 
     private lateinit var sp: SharedPreferences
     private var gson = Gson()
     private var SP_BAHAN_KEY = "dt_bahan"
     private var SP_NAME = "ResepSP"
+
+    private var SP_CART_KEY = "dt_cart"
+
+    private fun tambahKeranjang(bahan: Bahan){
+        val cart = sp.getString(SP_CART_KEY, null)
+        val type = object : TypeToken<MutableList<Bahan>>() {}.type
+        val cartList : MutableList<Bahan> = if (cart != null) {
+            gson.fromJson(cart, type)
+        } else {
+            mutableListOf()
+        }
+        if (!cartList.any{it.nama == bahan.nama}){
+            cartList.add(bahan)
+            val newCart = gson.toJson(cartList)
+            sp.edit().putString(SP_CART_KEY, newCart).apply()
+            Toast.makeText(requireContext()
+                , "Menambahkan ${bahan.nama} ke keranjang"
+                , Toast.LENGTH_SHORT)
+                .show()
+        } else{
+            Toast.makeText(requireContext()
+                , "Bahan ${bahan.nama} sudah ada di keranjang"
+                , Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
 
     private fun loadDataBahan(){
         val json = sp.getString(SP_BAHAN_KEY, null)
@@ -73,7 +99,7 @@ class BahanFragment : Fragment() {
         }
     }
 
-    private fun showAddDialog(adapter: ArrayAdapter<Bahan>) {
+    private fun showAddDialog() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Tambah Bahan Baru")
 
@@ -103,7 +129,7 @@ class BahanFragment : Fragment() {
 
             if (nama.isNotEmpty() && kategori.isNotEmpty() && gambar.isNotEmpty()) {
                 data.add(Bahan(nama, kategori, gambar))
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemInserted(data.size-1)
                 simpanDataBahan()
                 Toast.makeText(
                     requireContext(),
@@ -155,68 +181,40 @@ class BahanFragment : Fragment() {
             siapkanData()
             simpanDataBahan()
         }
-
-        val lvAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_list_item_1,
-            data
-
-        )
-
-        val lvBahan = view.findViewById<ListView>(R.id.lvBahan)
-        lvBahan.adapter = lvAdapter
-
-        lvBahan.setOnItemClickListener {
-            parent, view, position, id ->
-            Toast.makeText(requireContext(),
-                data[position].toString(),
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-
-        val btnTambah = view.findViewById<Button>(R.id.btnTambah)
-        btnTambah.setOnClickListener {
-            showAddDialog(lvAdapter)
-        }
-
-        val gestureDetector = GestureDetector(
-            requireContext(),
-            object : GestureDetector.SimpleOnGestureListener() {
-                override fun onDoubleTap(e: MotionEvent): Boolean {
-                    val position = lvBahan.pointToPosition(
-                        e.x.toInt(),
-                        e.y.toInt()
-                    )
-                    if (position != ListView.INVALID_POSITION) {
-                        val selectedItem = data[position]
-                        showActionDialog(position, selectedItem, data, lvAdapter)
-                    }
-                    return true
-                }
+        adapter = BahanAdapter(data)
+        binding.rvBahan.adapter = adapter
+        binding.rvBahan.layoutManager = LinearLayoutManager(requireContext())
+        adapter.setOnItemClickCallback(object : BahanAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Bahan, position: Int) {
+                showActionDialog(position, data)
             }
-        )
-        lvBahan.setOnTouchListener { _, event ->
-            gestureDetector.onTouchEvent(event)
+        })
+
+        adapter.setOnCartClickCallback(object : BahanAdapter.OnCartClickCallback {
+            override fun onCartClicked(data: Bahan){
+                tambahKeranjang(data)
+            }
+        })
+
+        binding.btnTambah.setOnClickListener {
+            showAddDialog()
         }
     }
     private fun showActionDialog(
         position: Int,
         selectedItem: Bahan,
-        data: MutableList<Bahan>,
-        adapter: ArrayAdapter<Bahan>
     ) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("ITEM ${selectedItem.nama}")
         builder.setMessage("Pilih tindakan yang ingin dilakukan")
 
-        builder.setPositiveButton("Update Kategori") { _, _ ->
-
-            showUpdateCategoryDialog(position, selectedItem, data, adapter)
+        builder.setPositiveButton("Update Data") { _, _ ->
+            showUpdateCategoryDialog(position, selectedItem)
         }
         builder.setNegativeButton("Hapus") { _, _ ->
             data.removeAt(position)
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemRemoved(position)
+            adapter.notifyItemRangeChanged(position, data.size)
             simpanDataBahan()
             Toast.makeText(
                 requireContext(),
@@ -234,8 +232,6 @@ class BahanFragment : Fragment() {
     private fun showUpdateCategoryDialog(
         position: Int,
         oldValue: Bahan,
-        data: MutableList<Bahan>,
-        adapter: ArrayAdapter<Bahan>
     ) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Update Data Bahan")
@@ -273,7 +269,7 @@ class BahanFragment : Fragment() {
             if (newValue.isNotEmpty() && newGambar.isNotEmpty()) {
                 data[position].kategori = newValue
                 data[position].gambar = newGambar
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemChanged(position)
                 simpanDataBahan()
                 Toast.makeText(
                     requireContext(),

@@ -2,7 +2,7 @@
 <resources>
 
     <string-array name="bahan_nama">
-        <item>Ayam Fillet</item>
+        <item>Ayam</item>
         <item>Bawang Merah</item>
         <item>Wortel</item>
         <item>Kentang</item>
@@ -48,26 +48,26 @@
     </string-array>
 
     <string-array name="bahan_gambar">
-        <item>https://i.ibb.co/LQrMdfN/ayam.png</item>
-        <item>https://i.ibb.co/nMSq1YV/bawang.png</item>
-        <item>https://i.ibb.co/3kZ5jBF/wortel.png</item>
-        <item>https://i.ibb.co/HCWMsTf/kentang.png</item>
-        <item>https://i.ibb.co/dKtGqg8/santan.png</item>
-        <item>https://i.ibb.co/b3Xhzqg/tepung.png</item>
-        <item>https://i.ibb.co/wKzC17k/gula.png</item>
-        <item>https://i.ibb.co/x8tq3hV/telur.png</item>
-        <item>https://i.ibb.co/gPBFJq0/daunbawang.png</item>
-        <item>https://i.ibb.co/b3j6YqL/saustiram.png</item>
-        <item>https://i.ibb.co/N1Jq8rW/tenggiri.png</item>
-        <item>https://i.ibb.co/wWbC3NT/tapioka.png</item>
-        <item>https://i.ibb.co/q0VFHdC/kecap.png</item>
-        <item>https://i.ibb.co/gP1c5Lz/tomat.png</item>
-        <item>https://i.ibb.co/9hVsY1X/cabai.png</item>
-        <item>https://i.ibb.co/f4R1y70/minyak.png</item>
-        <item>https://i.ibb.co/pwnL8t1/garam.png</item>
-        <item>https://i.ibb.co/yQNBgWq/lada.png</item>
-        <item>https://i.ibb.co/jGGs4s8/jahe.png</item>
-        <item>https://i.ibb.co/j3n51Yj/kunyit.png</item>
+        <item>https://e7.pngegg.com/pngimages/774/325/png-clipart-broiler-chicken-as-food-buffalo-wing-meat-sanitary-ware-plan-food-chicken.png</item>
+        <item>https://home.lapakbuah.com/wp-content/uploads/2021/06/Bawang-merah.jpeg</item>
+        <item>https://www.lapakbuah.com/wp-content/uploads/2021/07/wortel.jpg</item>
+        <item>https://nibble-images.b-cdn.net/nibble/original_images/jenis_jenis_kentang_06_ebddff3a58.jpg?class=large</item>
+        <item>https://www.asterra.id/wp-content/uploads/2024/06/santan-scaled.jpg</item>
+        <item>https://cdn.shopify.com/s/files/1/0573/8476/3576/files/1._Tepung_Terigu_All-Purpose_Flour.webp?v=1732184955</item>
+        <item>https://diabetasol.com/uploads/ngc_global_posts/67d8d8a434192_20250318092124-1-800.jpg</item>
+        <item>https://c.files.bbci.co.uk/16CE/production/_105483850_35a5b348-5c3f-45ca-94d7-4210aebc1a8e.jpg</item>
+        <item>https://asset-2.tribunnews.com/health/foto/bank/images/daun-bawang-1.jpg</item>
+        <item>https://ik.imagekit.io/dcjlghyytp1/8429eacc4a9a90e1525a321385f84f08?tr=f-auto,w-360</item>
+        <item>https://www.greeners.co/wp-content/uploads/2020/02/Ikan-Tenggiri-Ikan-Pelagis-Bergizi-Tinggi-1.jpg</item>
+        <item>https://mamasuka.com/storage/products/tepung-tapioka.jpg</item>
+        <item>https://i.gojekapi.com/darkroom/gomart-public-production/v2/images/public/images/e4fc5efe-0e18-408e-b31d-37df74478009_ABC-Kecap-Manis-Botol-275-ml.jpeg</item>
+        <item>https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/02/18053252/sebenarnya-tomat-buah-atau-sayur-ketahui-faktanya-halodoc.jpg.webp</item>
+        <item>https://www.boncabe.com/wp-content/uploads/cabe-cabai.jpg</item>
+        <item>https://nutrimart.co.id/cdn/shop/files/2104402_1.jpg?v=1711349898</item>
+        <item>https://cdn.rri.co.id/berita/Kupang/o/1743574106999-6cddc68e0c0be2abf569f1dfedbb4c90/ug2kqhqil2cbgkf.jpeg</item>
+        <item>https://asset.kompas.com/crops/q_cnCBhGrDrwEW21AT3nc1MDOz4=/72x0:1224x768/1200x800/data/photo/2021/07/29/61022602919db.jpg</item>
+        <item>https://asset.kompas.com/crops/iNeplz6t5gklRHx837V8tj9dt5M=/0x0:1000x667/1200x800/data/photo/2022/12/05/638e053c6e32d.jpg</item>
+        <item>https://static.honestdocs.id/system/blog_articles/main_hero_images/000/007/463/original/iStock-1190462955_%281%29.jpg</item>
     </string-array>
 
 </resources>

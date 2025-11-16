@@ -23,6 +23,11 @@
         android:icon="@drawable/outline_cannabis_24"/>
 
     <item
+        android:id="@+id/cartFragment"
+        android:title="KERANJANG"
+        android:icon="@drawable/ic_cart"/>
+
+    <item
         android:title="CONFIDENTIAL">
         <menu>
             <group android:checkableBehavior="single">
