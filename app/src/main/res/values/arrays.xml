@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="bahan_nama">
+        <item>Ayam Fillet</item>
+        <item>Bawang Merah</item>
+        <item>Wortel</item>
+        <item>Kentang</item>
+        <item>Santan Kental</item>
+        <item>Tepung Terigu</item>
+        <item>Gula Pasir</item>
+        <item>Telur Ayam</item>
+        <item>Daun Bawang</item>
+        <item>Saus Tiram</item>
+        <item>Ikan Tenggiri</item>
+        <item>Tepung Tapioka</item>
+        <item>Kecap Manis</item>
+        <item>Tomat</item>
+        <item>Cabai Rawit</item>
+        <item>Minyak Goreng</item>
+        <item>Garam</item>
+        <item>Lada Bubuk</item>
+        <item>Jahe</item>
+        <item>Kunyit</item>
+    </string-array>
+
+    <string-array name="bahan_kategori">
+        <item>Daging</item>
+        <item>Bumbu</item>
+        <item>Sayuran</item>
+        <item>Sayuran</item>
+        <item>Bumbu</item>
+        <item>Kering</item>
+        <item>Kering</item>
+        <item>Produk Susu/Telur</item>
+        <item>Sayuran</item>
+        <item>Saus</item>
+        <item>Ikan</item>
+        <item>Kering</item>
+        <item>Saus</item>
+        <item>Sayuran</item>
+        <item>Bumbu</item>
+        <item>Kering</item>
+        <item>Bumbu</item>
+        <item>Bumbu</item>
+        <item>Bumbu</item>
+        <item>Bumbu</item>
+    </string-array>
+
+    <string-array name="bahan_gambar">
+        <item>https://i.ibb.co/LQrMdfN/ayam.png</item>
+        <item>https://i.ibb.co/nMSq1YV/bawang.png</item>
+        <item>https://i.ibb.co/3kZ5jBF/wortel.png</item>
+        <item>https://i.ibb.co/HCWMsTf/kentang.png</item>
+        <item>https://i.ibb.co/dKtGqg8/santan.png</item>
+        <item>https://i.ibb.co/b3Xhzqg/tepung.png</item>
+        <item>https://i.ibb.co/wKzC17k/gula.png</item>
+        <item>https://i.ibb.co/x8tq3hV/telur.png</item>
+        <item>https://i.ibb.co/gPBFJq0/daunbawang.png</item>
+        <item>https://i.ibb.co/b3j6YqL/saustiram.png</item>
+        <item>https://i.ibb.co/N1Jq8rW/tenggiri.png</item>
+        <item>https://i.ibb.co/wWbC3NT/tapioka.png</item>
+        <item>https://i.ibb.co/q0VFHdC/kecap.png</item>
+        <item>https://i.ibb.co/gP1c5Lz/tomat.png</item>
+        <item>https://i.ibb.co/9hVsY1X/cabai.png</item>
+        <item>https://i.ibb.co/f4R1y70/minyak.png</item>
+        <item>https://i.ibb.co/pwnL8t1/garam.png</item>
+        <item>https://i.ibb.co/yQNBgWq/lada.png</item>
+        <item>https://i.ibb.co/jGGs4s8/jahe.png</item>
+        <item>https://i.ibb.co/j3n51Yj/kunyit.png</item>
+    </string-array>
+
+</resources>
